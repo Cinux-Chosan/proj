@@ -125,3 +125,5 @@ function handleNameChangeAttempts(socket, nickNames, namesUsed) {
     }
   });
 }
+
+// p27
