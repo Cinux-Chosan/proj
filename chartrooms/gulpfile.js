@@ -31,7 +31,7 @@ gulp.task('watch', ['connect'], () => {
 });
 
 gulp.task('server', ['less', 'watch'], () => {
-  //nodemon(config.nodemon);
+  nodemon(config.nodemon);
 });
 
 gulp.task('s', ['server']);

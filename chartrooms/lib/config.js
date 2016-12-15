@@ -1,4 +1,4 @@
-exports.serverPort = 9001;
+exports.serverPort = 9000;
 
 exports.nodemon = {
   script: 'server.js',

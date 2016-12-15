@@ -29,7 +29,6 @@ chatServer.listen(server);
 
 function send404(res) {
   res.writeHead(404, {"Content-Type": "text-plain"});
-  //res.write();
   res.end("Error 404: resource not found.");
 }
 

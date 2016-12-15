@@ -97,6 +97,8 @@ function joinRoom(socket, room) {
 
 function handleNameChangeAttempts(socket, nickNames, namesUsed) {
   socket.on('nameAttempt', function(name) {
+
+    // 修改的昵称不能以 Guest 开头
     if (name.indexOf('Guest') == 0) {
       socket.emit('nameResult', {
         success: false,
@@ -126,4 +128,30 @@ function handleNameChangeAttempts(socket, nickNames, namesUsed) {
   });
 }
 
-// p27
+// 转发消息
+function handleMessageBroadcasting(socket) {
+  socket.on('message', message => {
+    socket.broadcast.to(message.room).emit('message', {
+      text: nickNames[socket.id] + ':' + message.text
+    });
+  });
+}
+
+
+/* 更换房间 */
+function handleRoomJoining(socket) {
+  socket.on('join', room => {
+    socket.leave(currentRoom[socket.id]);
+    joinRoom(socket, room.newRoom);
+  })
+}
+
+
+/* 断开连接 */
+function handleClientDisconnection(socket) {
+  socket.on('disconnect', () => {
+    let nameIndex = namesUsed.indexOf(nickNames[socket.id]);
+    delete namesUsed[nameIndex];
+    delete nickNames[socket.id];
+  })
+}
