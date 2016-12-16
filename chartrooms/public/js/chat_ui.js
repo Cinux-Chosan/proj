@@ -42,7 +42,7 @@ $(document).ready(function() {
   socket.on('rooms', rooms => {
     $('#room-list').empty();
     for (let room in rooms) {
-      room = room.substring(1, room.length);
+      room = room.substring(0, room.length);
       if (room != '') {
         $('#room-list').append(divEscapedContentElement(room));
       }
