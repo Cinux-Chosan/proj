@@ -94,6 +94,7 @@ function joinRoom(socket, room) {
     socket.emit('message', { text: usersInRoomSummary });
   }
 
+  // 采用异步回调获取房间里面的所有客户端，以上为同步
   // io.sockets.in(room).clients((err, clients) => {
   //   let usersInRoom = clients;
   //
@@ -114,7 +115,6 @@ function joinRoom(socket, room) {
   //     // 将房间里面其他用户的汇总信息发送给该用户
   //     socket.emit('message', { text: usersInRoomSummary });
   //   }
-  //
   // });
 }
 
