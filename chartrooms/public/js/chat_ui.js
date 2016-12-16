@@ -33,7 +33,8 @@ $(document).ready(function() {
     $('#messages').append(divSystemContentElement('Room changed.'));
   });
 
-  socket.on('messages', messages => {
+  socket.on('message', messages => {
+    console.log(socket.id);
     let newElement = $('<div>').text(messages.text);
     $('#messages').append(newElement);
   });

@@ -14,7 +14,7 @@ let cache = {},
       filePath = 'public'+ req.url;
     }
     let absPath = './' + filePath;
-    serverStatic(res, cache, absPath);
+    serveStatic(res, cache, absPath);
   });
 
 
@@ -38,7 +38,7 @@ function sendFile(res, filePath, fileContents) {
   res.end(fileContents);
 }
 
-function serverStatic(res, cache, absPath) {
+function serveStatic(res, cache, absPath) {
   if (cache[absPath]) {
     sendFile(res, absPath, cache[absPath]);
   }

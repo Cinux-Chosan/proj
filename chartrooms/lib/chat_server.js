@@ -9,13 +9,13 @@ let socketio = require('socket.io'),
 exports.listen = function(server) {
   // 启动socket服务，并将其搭载到已有http服务上
   io = socketio.listen(server);
-  io.set('log level', 1);
+  // io.set('log level', 1);
 
   // 处理连接逻辑
   io.sockets.on('connection', function(socket) {
 
     // 当用户连接时，为其赋予一个访客名
-    assignGuestName(socket, guestNumber, nickNames, namesUsed);
+    guestNumber = assignGuestName(socket, guestNumber, nickNames, namesUsed);
 
     // 用户连接时将其放入聊天室 Lobby
     joinRoom(socket, 'Lobby');
@@ -27,7 +27,7 @@ exports.listen = function(server) {
 
     // 用户发出请求时，向其提供已经被占用的聊天室列表
     socket.on('rooms', function() {
-      socket.emit('rooms', io.sockets.manager.rooms);
+      socket.emit('rooms', io.sockets.adapter.rooms);
     });
 
     // 定义用户断开连接后的清除逻辑
@@ -53,7 +53,7 @@ function assignGuestName(socket, guestNumber, nickNames, namesUsed) {
   });
 
   namesUsed.push(name);
-  return guestNumber++;
+  return ++ guestNumber;
 }
 
 
@@ -73,9 +73,10 @@ function joinRoom(socket, room) {
     text: nickNames[socket.id] + ' has joined ' + room + '.'
   });
 
-  let usersInRoom = io.sockets.clients(room);
 
-  // 如果不止一个用户在房间里，那么汇总下都是谁
+  let usersInRoom = io.sockets.adapter.rooms[room];
+
+    // 如果不止一个用户在房间里，那么汇总下都是谁
   if (usersInRoom.length > 1) {
     let usersInRoomSummary = 'Users currently in ' + room + ':';
     for (let index in usersInRoom) {
@@ -92,6 +93,29 @@ function joinRoom(socket, room) {
     // 将房间里面其他用户的汇总信息发送给该用户
     socket.emit('message', { text: usersInRoomSummary });
   }
+
+  // io.sockets.in(room).clients((err, clients) => {
+  //   let usersInRoom = clients;
+  //
+  //   // 如果不止一个用户在房间里，那么汇总下都是谁
+  //   if (usersInRoom.length > 1) {
+  //     let usersInRoomSummary = 'Users currently in ' + room + ':';
+  //     for (let index in usersInRoom) {
+  //       let userSocketId = usersInRoom[index].id;
+  //       if (userSocketId != socket.id) {
+  //         if (index > 0) {
+  //           usersInRoomSummary += ', ';
+  //         }
+  //         usersInRoomSummary += nickNames[userSocketId];
+  //       }
+  //     }
+  //     usersInRoomSummary += '.';
+  //
+  //     // 将房间里面其他用户的汇总信息发送给该用户
+  //     socket.emit('message', { text: usersInRoomSummary });
+  //   }
+  //
+  // });
 }
 
 
@@ -131,6 +155,7 @@ function handleNameChangeAttempts(socket, nickNames, namesUsed) {
 // 转发消息
 function handleMessageBroadcasting(socket) {
   socket.on('message', message => {
+    console.log(socket.id);
     socket.broadcast.to(message.room).emit('message', {
       text: nickNames[socket.id] + ':' + message.text
     });

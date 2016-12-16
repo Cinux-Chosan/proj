@@ -22,7 +22,7 @@ Chat.prototype.processCommand = function(cmd) {
       case 'join':
         words.shift();
         let room = words.join(' ');
-        this,changeRoom(room);
+        this.changeRoom(room);
         break;
 
       case 'nick':
