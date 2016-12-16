@@ -155,7 +155,6 @@ function handleNameChangeAttempts(socket, nickNames, namesUsed) {
 // 转发消息
 function handleMessageBroadcasting(socket) {
   socket.on('message', message => {
-    console.log(socket.id);
     socket.broadcast.to(message.room).emit('message', {
       text: nickNames[socket.id] + ':' + message.text
     });
