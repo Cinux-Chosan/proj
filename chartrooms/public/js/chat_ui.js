@@ -25,7 +25,7 @@ $(document).ready(function() {
     } else {
       message = result.message;
     }
-    $('#messages').append(divSystemContentElement(messages));
+    $('#messages').append(divSystemContentElement(message));
   });
 
   socket.on('joinResult', result => {
@@ -34,7 +34,6 @@ $(document).ready(function() {
   });
 
   socket.on('message', messages => {
-    console.log(socket.id);
     let newElement = $('<div>').text(messages.text);
     $('#messages').append(newElement);
   });

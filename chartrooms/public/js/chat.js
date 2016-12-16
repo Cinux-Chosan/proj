@@ -45,5 +45,6 @@ function divEscapedContentElement(msg) {
 }
 
 function divSystemContentElement(msg) {
-  return $('<div>').html('<i>' + msg + '</li>');
+  console.log(msg);
+  return $('<div>').html('<i>' + msg + '</i>');
 }
