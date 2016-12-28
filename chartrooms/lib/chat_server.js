@@ -79,6 +79,7 @@ function joinRoom(socket, room) {
     // 如果不止一个用户在房间里，那么汇总下都是谁
   if (usersInRoom.length > 1) {
     let usersInRoomSummary = 'Users currently in ' + room + ':';
+	console.log(usersInRoom);
     for (let index in usersInRoom) {
       let userSocketId = usersInRoom[index].id;
       if (userSocketId != socket.id) {
