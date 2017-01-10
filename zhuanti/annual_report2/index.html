@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>年终总结</title>
+    <link rel="stylesheet" href="public/css/normalize.css" />
+    <link rel="stylesheet" href="public/css/swiper.min.css" />
+    <link rel="stylesheet" href="public/css/style.css" />
+</head>
+
+<body>
+
+
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <section class="swiper-slide slide1">Slide 1</section>
+            <section class="swiper-slide slide2">Slide 2</section>
+            <section class="swiper-slide slide3">Slide 3</section>
+            <section class="swiper-slide slide4">Slide 4</section>
+            <section class="swiper-slide slide5">Slide 5</section>
+            <section class="swiper-slide slide6">Slide 6</section>
+            <section class="swiper-slide slide7">Slide 7</section>
+        </div>
+
+        <!-- 如果需要分页器 -->
+        <!-- <div class="swiper-pagination"></div> -->
+
+        <!-- 如果需要导航按钮 -->
+        <!-- <div class="swiper-button-prev"></div> -->
+        <!-- <div class="swiper-button-next"></div> -->
+
+        <!-- 如果需要滚动条 -->
+        <!-- <div class="swiper-scrollbar"></div> -->
+    </div>
+    <script src="public/js/flexible.js" charset="utf-8"></script>
+    <script src="public/js/zepto.min.js" charset="utf-8"></script>
+    <script src="public/js/swiper-3.4.1.jquery.min.js" charset="utf-8"></script>
+    <script>
+        var mySwiper = new Swiper('.swiper-container', {
+            direction: 'vertical',
+            loop: true,
+            initialSlide: 0,
+            keyboardControl: true,
+            mousewheelControl: true
+
+            // 如果需要分页器
+            // pagination: '.swiper-pagination',
+
+            // // 如果需要前进后退按钮
+            // nextButton: '.swiper-button-next',
+            // prevButton: '.swiper-button-prev',
+            //
+            // // 如果需要滚动条
+            // scrollbar: '.swiper-scrollbar',
+        })
+    </script>
+</body>
+
+</html>
