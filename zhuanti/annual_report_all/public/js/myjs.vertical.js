@@ -20,20 +20,23 @@
     // bookContainer.height(body.width()).width(body.height());
     // writeStyle(bookContainer, 'left', (body.width() - body.height()) / 2 + 'px');
     // writeStyle(bookContainer, 'top', (body.height() - body.width()) / 2 + 'px');
+    // setTimeout(() => writeStyle(bookContainer, 'transform', 'rotate(-90deg)'), 2000);
 
 
     // flipbook
-
-    setTimeout(function() {
-      flipbook.turn({
-          height: "100%",
-          width: "100%",
-          // height: bookContainer.width(),
-          // width: bookContainer.height(),
-          acceleration: true,
-          autoCenter: true,
-          display: 'single'
-        });
-      }, 0);
+    // window.flipbook = flipbook;
+    //
+    // setTimeout(function() {
+    //   flipbook.turn({
+    //       height: "100%",
+    //       width: "100%",
+    //       // height: bookContainer.width(),
+    //       // width: bookContainer.height(),
+    //       duration: 2800,
+    //       acceleration: true,
+    //       autoCenter: true,
+    //       display: 'single'
+    //     });
+    //   }, 0);
   });
 })($);

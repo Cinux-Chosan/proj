@@ -1,0 +1,219 @@
+@note-header-height: 6.45%;
+@page-width: 709px;
+@page-height: 1127;
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+
+    &.bg_p5 {
+        background-color: #a89aff;
+    }
+
+    .note {
+        width: 100%;
+        height: 100%;
+        margin: auto;
+
+        .note_header {
+            height: @note-header-height;
+            background-image: url("../img/note_header_100.png");
+            background-size: 100% 100%;
+            position: relative;
+        }
+
+        .note_body {
+            width: 100%;
+            height: 100% - @note-header-height;
+            background-image: url("../img/note_body_2pages_100.png");
+            background-size: 100% 100%;
+            position: relative;
+
+            .body_content {
+                width: 96.1%;
+                height: 100%;
+                margin: auto;
+                position: relative;
+
+                .saw {
+                    width: 100%;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    overflow: visible;
+                    background-image: url("../img/header_saw_narrow.png");
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: 100% 100%;
+                    z-index: 9;
+                }
+
+                .page-container {
+                    z-index: 8;
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+
+                    .page {
+                        width: 100%;
+                        height: 100%;
+                        position: absolute;
+                        // background-color: #fff8f3;
+                        background: url("../img/page_saw.png") center center no-repeat;
+                        background-size: 100% 100%;
+                        transform-origin: 0 0;
+                        box-sizing: border-box;
+                        overflow: hidden;
+
+                        &.page4 {
+                            padding-top: 18.34%;
+                            padding-left: 18.34%;
+
+                            span {
+                                color: #f94d3f;
+                            }
+
+                            .p4_thisyear {
+                                .calc-pic-width-percentage(  "../img/f_p4_thisyear.png", @page-width);
+                                .calc-pic-height-percentage(  "../img/f_p4_thisyear.png", @page-height);
+                            }
+
+                            .p4_pic {
+                                // width: e(replace(%("%d%", image-width("../img/p4_pic.png")/ @page-width * 100), "px", ""));
+                                // height: e(replace(%("%d%", image-height("../img/p4_pic.png")/ @page-height * 100), "px", ""));
+                                .calc-pic-width-percentage(  "../img/p4_pic.png", @page-width);
+                                .calc-pic-height-percentage(  "../img/p4_pic.png", @page-height);
+                            }
+                        }
+
+                        &.page5 {
+                            padding-top: 18.34%;
+                            padding-left: 18.34%;
+                            font-size: 0.346rem;
+
+                            p {
+                                margin: 0.017rem 0;
+                            }
+
+                            span {
+                                color: #f94d3f;
+                            }
+
+                            .part1 {}
+
+                            .part2 {
+                                width: 61.07%;
+                                border-top: 2px dashed #dcae90;
+                                border-bottom: 2px dashed #dcac90;
+                            }
+
+                            .f_gain_zb {
+                                .calc-pic-width-percentage(  "../img/f_gain_zb.png", @page-width);
+                                .calc-pic-height-percentage(  "../img/f_gain_zb.png", @page-height);
+                            }
+
+                            .part3 {
+                                .total-gain {}
+                            }
+
+                            .f_total_gain {
+                                .calc-pic-width-percentage( "../img/f_total_gain.png", @page-width);
+                                .calc-pic-height-percentage( "../img/f_total_gain.png", @page-height);
+                            }
+
+                            .zb_coins_x {
+                                .calc-pic-height-percentage( "../img/zb_coins_x.png", @page-height);
+                                .calc-pic-width-percentage( "../img/zb_coins_x.png", @page-width);
+                            }
+                        }
+
+                        &.top,
+                        &.top-index {
+                            z-index: 99999;
+                        }
+
+                        &.floor-index {
+                            z-index: 0;
+                        }
+
+                        &.z-index-1 {
+                            z-index: 1;
+                        }
+
+                        &.z-index-2 {
+                            z-index: 2;
+                        }
+
+                        &.z-index-3 {
+                            z-index: 3;
+                        }
+
+                        &.z-index-4 {
+                            z-index: 4;
+                        }
+
+                        &.z-index-5 {
+                            z-index: 5;
+                        }
+
+                        &.z-index-6 {
+                            z-index: 6;
+                        }
+
+                        &.z-index-7 {
+                            z-index: 7;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+// 自扩展函数
+
+.calc-pic-width-percentage(@path, @parent-width) {
+    width: e(replace(%("%d%", image-width(@path)/ @parent-width * 100), "px", ""));
+}
+
+.calc-pic-height-percentage(@path, @parent-height) {
+    height: e(replace(%("%d%", image-height(@path)/ @parent-height * 100), "px", ""));
+}
+
+.rotate {
+    animation: rotateAnimation 1.6s 1;
+    -webkit-animation: rotateAnimation 1.6s 1;
+    animation-fill-mode: forwards;
+}
+@keyframes topX() {
+    from {
+        top: 0;
+    }
+
+    to {
+        top: 20px;
+    }
+}
+@rotate-deg: 3deg;
+@keyframes rotateAnimation {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(@rotate-deg);
+    }
+}
+@-webkit-keyframes rotateAnimation {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(@rotate-deg);
+    }
+}
