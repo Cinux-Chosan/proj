@@ -1,6 +1,7 @@
 @note-header-height: 6.45%;
-@page-width: 709px;
-@page-height: 1127;
+@page-path: "../img/page_saw.png";
+@page-width: image-width(@page-path);
+@page-height: image-height(@page-path);
 
 body,
 html {
@@ -70,9 +71,124 @@ body {
                         box-sizing: border-box;
                         overflow: hidden;
 
+                        &.page2 {
+                            padding-top: 18.34%;
+                            padding-left: 18.34%;
+                            @p2-left: percentage(126 / @page-width);
+                            @p2-top: percentage(130 / @page-height);
+
+                            span {
+                                color: #f94d3f;
+                            }
+
+                            .p2_paragraph1 {
+                                position: absolute;
+                                left: @p2-left;
+                                top: @p2-top;
+                            }
+
+                            .p2_paragraph2 {
+                                position: absolute;
+                                left: @p2-left;
+                                top: percentage(316 / @page-height);
+                            }
+
+                            .p2_paragraph3 {
+                                position: absolute;
+                                left: @p2-left;
+                                top: percentage(986 / @page-height);
+                            }
+
+                            .p2_v_line {
+                                position: absolute;
+                                left: percentage(95 / @page-width);
+                                top: percentage(220 / @page-height);
+                                .calc-pic-width-percentage( "../img/p2_v_line.png", @page-width);
+                                .calc-pic-height-percentage( "../img/p2_v_line.png", @page-height);
+                            }
+
+                            .p2_earliest {
+                                position: absolute;
+                                top: percentage(210 / @page-height);
+                                .calc-pic-width-percentage( "../img/p2_earliest.png", @page-width);
+                                .calc-pic-height-percentage( "../img/p2_earliest.png", @page-height);
+                            }
+
+                            .p2_pic {
+                                position: absolute;
+                                left: percentage(116 / @page-width);
+                                top: percentage(528/@page-height);
+                                .calc-pic-width-percentage( "../img/p2_pic.png", @page-width);
+                                .calc-pic-height-percentage( "../img/p2_pic.png", @page-height);
+                            }
+
+                            .p2_latest {
+                                position: absolute;
+                                top: percentage(892 / @page-height);
+                                .calc-pic-width-percentage( "../img/p2_latest.png", @page-width);
+                                .calc-pic-height-percentage( "../img/p2_latest.png", @page-height);
+                            }
+                        }
+
+                        &.page3 {
+                            padding-top: 18.34%;
+                            padding-left: 18.34%;
+                            @p3-left: percentage(130 / @page-width);
+                            @p3-top: percentage(130 / @page-height);
+
+                            span {
+                                color: #f94d3f;
+                            }
+
+                            .p4_thisyear {
+                                position: absolute;
+                                left: @p3-left;
+                                top: @p3-top;
+                                .calc-pic-width-percentage( "../img/f_p4_thisyear.png", @page-width);
+                                .calc-pic-height-percentage( "../img/f_p4_thisyear.png", @page-height);
+                            }
+
+                            .p3_paragraph1 {
+                                position: absolute;
+                                left: @p3-left;
+                                top: percentage(220 / @page-height);
+                            }
+
+                            .p3_paragraph2 {
+                                position: absolute;
+                                left: @p3-left;
+                                top: percentage(388 / @page-height);
+                            }
+
+                            .p3_paragraph3 {
+                                position: absolute;
+                                left: @p3-left;
+                                top: percentage(910 / @page-height);
+                            }
+
+                            .f_p3_formed {
+                                position: absolute;
+                                left: @p3-left;
+                                top: percentage(300 / @page-height);
+                                .calc-pic-width-percentage( "../img/f_p3_formed.png", @page-width);
+                                .calc-pic-height-percentage( "../img/f_p3_formed.png", @page-height);
+                            }
+
+                            .p3_pic {
+                                position: absolute;
+                                left: percentage(92 / @page-width);
+                                top: percentage(510 / @page-height);
+                                .calc-pic-width-percentage( "../img/p3_pic.png", @page-width);
+                                .calc-pic-height-percentage( "../img/p3_pic.png", @page-height);
+                            }
+                        }
+
                         &.page4 {
                             padding-top: 18.34%;
                             padding-left: 18.34%;
+                            @p4-left: percentage(126 / @page-width);
+                            @p4-top: percentage(130 / @page-height);
+                            @p4-paragraph-left: percentage(94 / @page-width);
 
                             span {
                                 color: #f94d3f;
@@ -83,9 +199,35 @@ body {
                                 .calc-pic-height-percentage(  "../img/f_p4_thisyear.png", @page-height);
                             }
 
+                            .p4_paragraph1 {
+                                position: absolute;
+                                left: @p4-paragraph-left;
+                                top: percentage(232 / @page-height);
+                            }
+
+                            .p4_paragraph2 {
+                                position: absolute;
+                                left: @p4-paragraph-left;
+                                top: percentage(322 / @page-height);
+                            }
+
+                            .p4_paragraph3 {
+                              position: absolute;
+                              left: @p4-paragraph-left;
+                              top: percentage(414 / @page-height);
+                            }
+                            .p4_paragraph4 {
+                              position: absolute;
+                              left: @p4-left;
+                              top: percentage(830 / @page-height);
+                            }
+
                             .p4_pic {
                                 // width: e(replace(%("%d%", image-width("../img/p4_pic.png")/ @page-width * 100), "px", ""));
                                 // height: e(replace(%("%d%", image-height("../img/p4_pic.png")/ @page-height * 100), "px", ""));
+                                position: absolute;
+                                top: percentage(432 / @page-height);
+                                left: percentage(110 / @page-width);
                                 .calc-pic-width-percentage(  "../img/p4_pic.png", @page-width);
                                 .calc-pic-height-percentage(  "../img/p4_pic.png", @page-height);
                             }
@@ -95,6 +237,8 @@ body {
                             padding-top: 18.34%;
                             padding-left: 18.34%;
                             font-size: 0.346rem;
+                            @p5-left: percentage(130 / @page-width);
+                            @p5-top: percentage(130 / @page-height);
 
                             p {
                                 margin: 0.017rem 0;
@@ -104,7 +248,17 @@ body {
                                 color: #f94d3f;
                             }
 
-                            .part1 {}
+                            .p5_paragraph1 {
+                              position: absolute;
+                              left: @p5-left;
+                              top: @p5-top;
+                            }
+
+                            .p5_paragraph2 {
+                              position: absolute;
+                              left: @p5-left;
+                              top: percentage(388 / @page-height);
+                            }
 
                             .part2 {
                                 width: 61.07%;
@@ -113,22 +267,48 @@ body {
                             }
 
                             .f_gain_zb {
+                              position: absolute;
+                              left: @p5-left;
+                              top: percentage(462 / @page-height);
+
                                 .calc-pic-width-percentage(  "../img/f_gain_zb.png", @page-width);
                                 .calc-pic-height-percentage(  "../img/f_gain_zb.png", @page-height);
                             }
 
-                            .part3 {
-                                .total-gain {}
+                            .p5_paragraph3 {
+                                  position: absolute;
+                                  left: @p5-left;
+                                  top: percentage(584 / @page-height);
                             }
 
                             .f_total_gain {
-                                .calc-pic-width-percentage( "../img/f_total_gain.png", @page-width);
-                                .calc-pic-height-percentage( "../img/f_total_gain.png", @page-height);
+                              position: absolute;
+                              left: @p5-left;
+                              top: percentage(664 / @page-height);
+                                .calc-pic-width-percentage(  "../img/f_total_gain.png", @page-width);
+                                .calc-pic-height-percentage(  "../img/f_total_gain.png", @page-height);
                             }
 
                             .zb_coins_x {
-                                .calc-pic-height-percentage( "../img/zb_coins_x.png", @page-height);
-                                .calc-pic-width-percentage( "../img/zb_coins_x.png", @page-width);
+                              position: absolute;
+                              left: @p5-left;
+                              top: percentage(724 / @page-height);
+                                .calc-pic-height-percentage(  "../img/zb_coins_x.png", @page-height);
+                                .calc-pic-width-percentage(  "../img/zb_coins_x.png", @page-width);
+                            }
+
+                            .coins-number{
+                              position: absolute;
+                              left: percentage(210 / @page-width);
+                              top: percentage(734 / @page-height);
+                            }
+                            .p5_pic{
+                              position: absolute;
+                              left: percentage(188 / @page-width);
+                              top: percentage(730 / @page-height);
+                              .calc-pic-height-percentage(  "../img/p5_pic.png", @page-height);
+                              .calc-pic-width-percentage(  "../img/p5_pic.png", @page-width);
+
                             }
                         }
 
@@ -184,6 +364,11 @@ body {
     height: e(replace(%("%d%", image-height(@path)/ @parent-height * 100), "px", ""));
 }
 
+.calc-percentage(@numerator, @denominator) {
+    @retVal: percentage(@numerator/@denominator);
+    // mixin中定义的变量，可以作为返回值，在外部获取
+}
+// 动画
 .rotate {
     animation: rotateAnimation 1.6s 1;
     -webkit-animation: rotateAnimation 1.6s 1;
