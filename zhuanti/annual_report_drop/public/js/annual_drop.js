@@ -38,19 +38,26 @@
 
 
   // 自动翻页测试效果
-  var pages = $('.page');
-  var pageIndex = 0;
-  setInterval(function() {
-    $(pages[pageIndex]).addClass('top');
-    console.log(pageIndex);
-    setTimeout(function(pageIndex){
-      $(pages[pageIndex]).removeClass('top');},3000, pageIndex);
-    pageIndex ++;
-    pageIndex %= pages.length;
-
-  }, 3000);
+  // var pages = $('.page');
+  // var pageIndex = 0;
+  // setInterval(function() {
+  //   $(pages[pageIndex]).addClass('top');
+  //   console.log(pageIndex);
+  //   setTimeout(function(pageIndex){
+  //     $(pages[pageIndex]).removeClass('top');},3000, pageIndex);
+  //   pageIndex ++;
+  //   pageIndex %= pages.length;
+  //
+  // }, 3000);
 
   // end
+
+
+  function getData() {
+    $.ajax({
+      url: '',
+    });
+  }
 
 
 
