@@ -1,34 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
-<body>
-  <!-- <script type="text/javascript">
-    function Data() {
-      return new Promise((resolve, reject) => {
-        let data = Math.random();
-        if (data > 0.5) {
-          console.log(data);
-          resolve();
-        } else {
-          reject();
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style media="screen">
+        div {
+            width: 100px;
+            height: 100px;
+            display: inline-block;
         }
-      });
-    }
-    Data().then(() => Data(), () => Promise.reject())
-    .then(() => Data(), () => Promise.reject());
-  </script> -->
+        .box1,.box2{
+          width: auto;
+        }
 
-  <table>
-    <tr>
-      <td id="x"><div id="xx">
+        .div1 {
+            background: red;
+        }
 
-      </div></td>
-    </tr>
-  </table>
+        .div2 {
+            background: green;
+        }
+
+        .div3 {
+            background: blue;
+            float: left;
+        }
+
+        .div4 {
+            background: yellow;
+        }
+
+        .div5 {
+            background: black;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="box1">
+
+        <div class="div1">
+        </div>
+        <div class="div2">
+        </div>
+        <div class="div3">
+        </div>
+        <div class="div4">
+        </div>
+        <div class="div5">
+        </div>
+    </div>
+
+    <div class="box2">
+      <div class="div1">
+
+      </div>
+    </div>
 </body>
+
 </html>
