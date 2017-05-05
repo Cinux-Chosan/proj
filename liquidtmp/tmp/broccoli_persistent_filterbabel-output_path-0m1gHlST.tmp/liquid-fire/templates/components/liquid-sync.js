@@ -1,3 +1,0 @@
-define("liquid-fire/templates/components/liquid-sync", ["exports"], function (exports) {
-  exports.default = Ember.HTMLBars.template({ "id": "pPWzrxFv", "block": "{\"statements\":[[\"yield\",\"default\",[[\"helper\",[\"action\"],[[\"get\",[null]],\"ready\"],null]]],[\"text\",\"\\n\"]],\"locals\":[],\"named\":[],\"yields\":[\"default\"],\"blocks\":[],\"hasPartials\":false}", "meta": { "moduleName": "liquid-fire/templates/components/liquid-sync.hbs" } });
-});

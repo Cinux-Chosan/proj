@@ -1,3 +1,0 @@
-define("liquid/pods/posts/template", ["exports"], function (exports) {
-  exports["default"] = Ember.HTMLBars.template({ "id": "x2sXmF1o", "block": "{\"statements\":[[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"\"],[\"flush-element\"],[\"text\",\"\\n  this is posts\\n\"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[],\"named\":[],\"yields\":[],\"blocks\":[],\"hasPartials\":false}", "meta": { "moduleName": "liquid/pods/posts/template.hbs" } });
-});

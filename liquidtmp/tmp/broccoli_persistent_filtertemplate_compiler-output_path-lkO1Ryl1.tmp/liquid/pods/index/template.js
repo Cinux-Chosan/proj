@@ -1,1 +1,0 @@
-export default Ember.HTMLBars.template({"id":"c5DgUkIL","block":"{\"statements\":[[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"h100\"],[\"flush-element\"],[\"text\",\"\\n  this is index\\n\"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[],\"named\":[],\"yields\":[],\"blocks\":[],\"hasPartials\":false}","meta":{"moduleName":"liquid/pods/index/template.hbs"}});

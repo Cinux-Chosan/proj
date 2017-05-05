@@ -1,1 +1,0 @@
-/home/chosan/桌面/all/projects/my-ember-t/liquid/tmp/funnel-input_base_path-4fM3d4o2.tmp/jquery.js
