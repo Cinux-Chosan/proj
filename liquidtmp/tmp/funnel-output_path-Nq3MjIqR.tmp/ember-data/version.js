@@ -1,0 +1,1 @@
+/home/chosan/桌面/all/projects/my-ember-t/liquid/tmp/creator-output_path-Am53Nrwc.tmp/version.js

@@ -1,0 +1,1 @@
+export default Ember.HTMLBars.template({"id":"JGnaQtpr","block":"{\"statements\":[[\"yield\",\"default\",[[\"helper\",[\"-get-dynamic-var\"],[\"outletState\"],null]]]],\"locals\":[],\"named\":[],\"yields\":[\"default\"],\"blocks\":[],\"hasPartials\":false}","meta":{"moduleName":"liquid-fire/templates/version-specific/get-outlet-state.hbs"}});

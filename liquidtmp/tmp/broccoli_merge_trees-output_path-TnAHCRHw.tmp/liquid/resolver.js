@@ -1,0 +1,1 @@
+/home/chosan/桌面/all/projects/my-ember-t/liquid/app/resolver.js

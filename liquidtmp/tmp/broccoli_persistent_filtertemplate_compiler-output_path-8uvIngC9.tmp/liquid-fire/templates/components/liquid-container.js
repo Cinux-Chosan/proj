@@ -1,0 +1,1 @@
+export default Ember.HTMLBars.template({"id":"443Wqyqz","block":"{\"statements\":[[\"yield\",\"default\",[[\"get\",[null]]]]],\"locals\":[],\"named\":[],\"yields\":[\"default\"],\"blocks\":[],\"hasPartials\":false}","meta":{"moduleName":"liquid-fire/templates/components/liquid-container.hbs"}});
