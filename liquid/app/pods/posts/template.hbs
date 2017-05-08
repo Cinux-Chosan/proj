@@ -1,3 +1,12 @@
 <div class="">
   this is posts
 </div>
+
+<div id="liquid-bind-demo">
+  {{liquid-bind a}}
+</div>
+<button type="button" name="button" {{action "change"}}> + 1 </button>
+{{#liquid-bind model use="rotateBelow" class="demo-container" as |currentModel|}}
+  {{currentModel.id}}
+  <button {{action "higher" currentModel}}>Go</button>
+{{/liquid-bind}}
