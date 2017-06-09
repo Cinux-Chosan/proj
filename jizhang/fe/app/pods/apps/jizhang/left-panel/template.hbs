@@ -1,0 +1,19 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>日 期</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each histories as |history|}}
+      <tr>
+        <td>
+          {{history.date}}
+        </td>
+        <div class="fr history-op-del">
+          {{!-- <i class="iconfont icon-minus text-bold"></i> --}}
+        </div>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
