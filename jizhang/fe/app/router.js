@@ -8,9 +8,10 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('apps', function() {
-    this.route('jizhang');
     this.route('login');
-    this.route('edit');
+    this.route('jizhang', function(){
+      this.route('edit', { path: 'edit/:edit_id'});
+    });
   });
 });
 

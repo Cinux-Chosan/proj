@@ -19,7 +19,7 @@ export default Ember.Component.extend({
       type: 'post'
     });
     if (result.state) {
-      this.get('appController').transitionToRoute('apps');
+      this.get('appController').transitionToRoute('apps.jizhang.edit');
     }
   }).drop()
 });
