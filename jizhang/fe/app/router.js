@@ -11,6 +11,7 @@ Router.map(function() {
     this.route('login');
     this.route('jizhang', function(){
       this.route('edit', { path: 'edit/:edit_id'});
+      this.route('detail', { path: 'detail/:detail_id'});
     });
   });
 });

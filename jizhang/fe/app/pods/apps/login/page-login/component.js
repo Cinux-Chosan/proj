@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import { task } from  'ember-concurrency';
+import { getJSON, tip } from 'jizhang/utils/util';
 const { run: { later } } = Ember;
 
 export default Ember.Component.extend({
@@ -12,14 +13,9 @@ export default Ember.Component.extend({
 
   login: task(function * () {
     let userInfo = this.get('userInfo');
-    let result = yield Ember.$.ajax({
-      url: '/login',
-      data: userInfo,
-      dataType: 'json',
-      type: 'post'
-    });
+    let result = yield getJSON('/login', userInfo, 'post');
     if (result.state) {
-      this.get('appController').transitionToRoute('apps.jizhang.edit');
+      this.get('appController').transitionToRoute('apps.jizhang.edit', 0);
     }
   }).drop()
 });
