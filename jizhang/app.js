@@ -1,6 +1,7 @@
 var express = require('express');
 var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser');
+const mmt = require('moment');
 const { connect } = require('./mongodb_connect');
 const { error, findBy, removeBy, getMD5 } = require('./server_utils');
 const assert = require('assert');
@@ -19,6 +20,7 @@ app.use((req, res, next) => {  // 根据 token 刷新用户登录时间
     if (logedUser) {  // 用户登录
       if ((new Date(logedUser.recentReqTime + expireTime)) < (new Date())) {  // 用户登录已过期
         loged[removeBy]('token', logedUser.token);
+        res.send(error('登录过期，请重新登录！'));
       } else {
         logedUser.recentReqTime = Date.now();
       }
@@ -48,7 +50,7 @@ app.post('/login', function(req, res) {
       });
     });
   } else {
-    error('请输入完整的用户名和密码！');
+    res.send(error('请输入完整的用户名和密码！'));
   }
 });
 
@@ -86,10 +88,23 @@ app.post('/signUp', (req, res) => {
 });
 
 app.post('/submitEdit', function(req, res) {
-  if (true) {
-    res.cookie('uid', '1', { expires: new Date(Date.now() + 900000) });
-    res.send(json({state: 1}));
-  }
+  let { records = [], records_id } = req.body;
+  let { uid } = req.cookie;
+  let date = Date.now();
+  let sum = records.reduce((a, b) => {
+    bMoney = b.type == 'in' ? Number(b.money) : - Number(b.money);
+    return a + bMoney;
+  }, 0);
+  connect((db, cb) => {
+    let records = db.collection('records');
+    let doc = { uid, date, sum , records };
+    console.log(doc);
+    records.updateOne({ _id: records_id }, doc, { upsert: 1 }, (err, r) => {
+      console.log('r', r);
+      res.send(json(r));
+      cb();
+    });
+  });
 });
 var server = app.listen(8801, function() {
   var host = server.address().address;

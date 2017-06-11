@@ -1,4 +1,6 @@
 const crypto = require('crypto');
+const moment = require('moment');
+
 const { defineProperty: defProp, setPrototypeOf: setProto, getPrototypeOf: getProto } = Object;
 const proto_array = getProto([]);
 const proto_string = getProto('');
@@ -8,6 +10,8 @@ const get = (obj, key) => obj[key];
 const throwIfMissing = (missingParam = '', tip = '') => { throw new Error(`Missing parameter ${missingParam}, ${tip}`); };
 const pip = (...funcs) => funcs.reduce((a, b) => b(a));  //  如果有初始值，初始值作为第一个参数
 
+
+console.log(moment().format('YY-MM-DD'));
 exports.getHash = () => crypto.createHash('md5');
 exports.getMD5 = (val) => this.getHash().update(val.toString()).digest('hex');
 
