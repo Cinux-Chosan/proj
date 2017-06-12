@@ -14,12 +14,42 @@ table {
         display: block;
         overflow: hidden;
         text-overflow: ellipsis;
+        position: relative;
+        &:hover{
+          .history-ops{
+            display: block;
+          }
+        }
       }
     }
 
-    .history-op-del {
-      &:hover {
-        color: red;
+    .history-ops {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      display: none;
+
+      .operation-del, .operation-edit{
+        float: right;
+        height: 100%;
+        vertical-align: middle;
+        text-align: center;
+        color: black;
+        padding: 8px 4px;
+        box-sizing: border-box;
+        transition: all .2s ease-in-out;
+        opacity: .6;
+        &:hover{
+          opacity: 1;
+          transform: scale(1.2);
+        }
+      }
+      .operation-del{
+        background: #f2dede;
+      }
+      .operation-edit{
+        background: #dff0d8;
       }
     }
   }

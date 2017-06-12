@@ -1,4 +1,4 @@
-<table class="table table-striped">
+<table class="table table-striped table-fixed">
   <thead>
     <tr>
       <th>日 期</th>
@@ -9,10 +9,16 @@
       <tr {{action "showDetail" history}}>
         <td>
           {{history.title}} - {{history.createTime}}
+          <div class="history-ops">
+            {{!-- <i class="iconfont icon-minus text-bold"></i> --}}
+            <div class="operation-del" {{action "delItem" history}}>
+              删除
+            </div>
+            <div class="operation-edit" onclick={{action "edit" history}}>
+              修改
+            </div>
+          </div>
         </td>
-        <div class="fr history-op-del">
-          {{!-- <i class="iconfont icon-minus text-bold"></i> --}}
-        </div>
       </tr>
     {{/each}}
   </tbody>

@@ -11,7 +11,7 @@ var app = express();
 const { stringify: json } = JSON;
 
 let loged = [];
-const expireTime = 1000 * 60 * 30;
+const expireTime = 1000 * 60 * 60 * 3;  // 3 小时掉线
 app.use(express.static('./fe/dist'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
@@ -28,10 +28,15 @@ app.use((req, res, next) => {  // 根据 token 刷新用户登录时间
         res.cookie('token', token, { expires: new Date(Date.now() + expireTime)});
         logedUser.recentReqTime = Date.now();
       }
+      next();
     } else {
-      // res.send(error('您未登陆，请登陆!'));
+      if (req.url == '/login') {
+        next();
+      } else {    
+        res.send(error('您未登陆，请登陆!'));
+      }
     }
-    next();
+
 });
 
 // 用户登录
@@ -96,6 +101,9 @@ app.post('/signUp', (req, res) => {
 // 保存提交
 app.post('/submitEdit', function(req, res) {
   let { records = [], record_id, title } = req.body;
+  if (!records[0].money) {
+    return res.send(error('请先填写记录!'));
+  }
   let { uid } = req.cookies;
   let create_time = Date.now();
   // let sum = records.reduce((a, b) => {
@@ -112,10 +120,12 @@ app.post('/submitEdit', function(req, res) {
     let collection_records = db.collection('records');
     let doc = { uid, create_time, sum, incomes, outcomes, records, title };
     record_id = record_id == 0 ? 0 : record_id;
-    let pattern = record_id ? ({ _id: record_id }) : ({ create_time });
+    let pattern = record_id ? ({ _id: objId(record_id) }) : ({ create_time });
     collection_records.updateOne(pattern, doc, { upsert: true, w: 1 }, (err, r = {}) => {
-      if (r.result.ok || r.result.nModified) {
-        res.send(ok({ state: 1, msg: '保存成功!' }));
+      if (r.result.ok && r.result.nModified) {
+        res.send(ok({ _id: record_id }));
+      } else if (r.result.ok && !r.result.nModified) {
+        res.send(ok({ _id: r.upsertedId._id }));
       }
       cb();
     });
@@ -142,12 +152,25 @@ app.get('/getRecordById', (req, res) => {
   connect((db, cb) => {
     let collection_records = db.collection('records');
     _id = objId(_id);
-    collection_records.findOne({ _id }, {fields: {records: 1, incomes:1, outcomes: 1, sum: 1}}, (err, doc) => {
+    collection_records.findOne({ _id }, {fields: {records: 1, incomes:1, outcomes: 1, sum: 1, title: 1, uid: 1}}, (err, doc) => {
       cb();
-      let data = Object.assign({ state: 1}, doc);
-      res.send(ok(data));
+      res.send(ok(doc));
     });
   });
+});
+
+app.get('/delRecord', (req, res) => {
+  let { _id } = req.query;
+  connect((db, cb) => {
+    let collection_records = db.collection('records');
+    _id = objId(_id);
+    collection_records.findOneAndDelete({ _id }, (err, r) => {
+      cb();
+      if (r.ok) {
+        res.send(ok(r.value));
+      }
+    })
+  })
 })
 
 var server = app.listen(8801, function() {
