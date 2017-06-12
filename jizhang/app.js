@@ -20,7 +20,7 @@ app.use((req, res, next) => {  // 根据 token 刷新用户登录时间
     if (logedUser) {  // 用户登录
       if ((new Date(logedUser.recentReqTime + expireTime)) < (new Date())) {  // 用户登录已过期
         loged[removeBy]('token', logedUser.token);
-        res.send(error('登录过期，请重新登录！'));
+        res.send(error('登录过期，请重新登录!'));
       } else {
         logedUser.recentReqTime = Date.now();
       }
@@ -42,15 +42,15 @@ app.post('/login', function(req, res) {
           res.cookie('uid', uid, { expires: new Date(Date.now() + expireTime)});
           res.cookie('token', token, { expires: new Date(Date.now() + expireTime)});
           loged.push({ token, uid, recentReqTime: Date.now() });
-          res.send(json({state: 1, msg: '成功登录！'}));
+          res.send(json({state: 1, msg: '成功登录!'}));
         } else {
-          res.send(error('用户名或密码错误！'));
+          res.send(error('用户名或密码错误!'));
         }
         cb();
       });
     });
   } else {
-    res.send(error('请输入完整的用户名和密码！'));
+    res.send(error('请输入完整的用户名和密码!'));
   }
 });
 
@@ -58,7 +58,7 @@ app.post('/login', function(req, res) {
 app.get('/logout', (req, res) => {
   let { uid } = req.cookie;
   loged[removeBy]('uid', uid);
-  res.send(json({state: 1, msg: '登出成功！'}));
+  res.send(json({state: 1, msg: '登出成功!'}));
 });
 
 // 用户注册
@@ -71,37 +71,37 @@ app.post('/signUp', (req, res) => {
       cursor.toArray((err, docs) => {
         if (docs.length) {
           cb();
-          res.send(json({state: 0, msg: '改账号已经注册！'}));
+          res.send(json({state: 0, msg: '该账号已经注册!'}));
         } else {
           pwd = getMD5(pwd);
           console.log(pwd);
           users.insertOne({ user_name, pwd }, () => {
             cb();
-            res.send(json({state: 1, msg: '注册成功！'}));
+            res.send(json({state: 1, msg: '注册成功!'}));
           });
         }
       });
     });
   } else {
-    res.send(json(error('用户名或密码缺失，请完整填写！')));
+    res.send(json(error('用户名或密码缺失，请完整填写!')));
   }
 });
 
 app.post('/submitEdit', function(req, res) {
-  let { records = [], records_id } = req.body;
-  let { uid } = req.cookie;
+  let { records = [], record_id } = req.body;
+  let { uid } = req.cookies;
   let date = Date.now();
   let sum = records.reduce((a, b) => {
     bMoney = b.type == 'in' ? Number(b.money) : - Number(b.money);
     return a + bMoney;
   }, 0);
   connect((db, cb) => {
-    let records = db.collection('records');
+    let collection_records = db.collection('records');
     let doc = { uid, date, sum , records };
-    console.log(doc);
-    records.updateOne({ _id: records_id }, doc, { upsert: 1 }, (err, r) => {
-      console.log('r', r);
-      res.send(json(r));
+    collection_records.updateOne({ _id: record_id }, doc, { upsert: 1, w: 1 }, (err, r = {}) => {
+      if (r.ok || r.nModified) {
+        res.send(json({ state: 1, msg: '保存成功!' }));
+      }
       cb();
     });
   });

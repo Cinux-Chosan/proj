@@ -15,6 +15,7 @@ export default Ember.Component.extend({
     let userInfo = this.get('userInfo');
     let result = yield getJSON('/login', userInfo, 'post');
     if (result.state) {
+      tip('登陆成功!');
       this.get('appController').transitionToRoute('apps.jizhang.edit', 0);
     }
   }).drop()
