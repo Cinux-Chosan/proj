@@ -1,7 +1,7 @@
 <div class="tools clearfix">
 
   {{#each tools as |tool|}}
-    <div class="tool">
+    <div class="tool" {{action tool.action}}>
       <div class="tool-icon">
         <i class="iconfont {{tool.iconCls}}"></i>
       </div>
