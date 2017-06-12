@@ -6,9 +6,9 @@
   </thead>
   <tbody>
     {{#each histories as |history|}}
-      <tr>
+      <tr {{action "showDetail" history}}>
         <td>
-          {{history.date}}
+          {{history.title}} - {{history.createTime}}
         </td>
         <div class="fr history-op-del">
           {{!-- <i class="iconfont icon-minus text-bold"></i> --}}

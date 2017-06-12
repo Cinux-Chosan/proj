@@ -1,1 +1,19 @@
-{{yield}}
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th>描述</th>
+      <th>类型</th>
+      <th>金额</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each recordData.records as |item|}}
+    <tr class={{if (is-eq item.type 'in') 'success' 'danger'}}>
+      <td>{{item.desc}}</td>
+      <td>{{if (is-eq item.type 'in') '收入' '支出'}}</td>
+      <td>{{item.money}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+{{apps/jizhang/total-count total=total}}

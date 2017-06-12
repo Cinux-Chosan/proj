@@ -1,6 +1,7 @@
 const crypto = require('crypto');
 const moment = require('moment');
 
+const { stringify: json } = JSON;
 const { defineProperty: defProp, setPrototypeOf: setProto, getPrototypeOf: getProto } = Object;
 const proto_array = getProto([]);
 const proto_string = getProto('');
@@ -36,4 +37,5 @@ defProp(proto_array, symbol_removeBy, {
 });
 exports.removeBy = symbol_removeBy;
 
-exports.error = errMsg => ({ state: 0, msg: errMsg });
+exports.error = errMsg => json({ state: 0, msg: errMsg });
+exports.ok = data => json({ state: 1, data });

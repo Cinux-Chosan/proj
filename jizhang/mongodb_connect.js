@@ -1,5 +1,6 @@
-var MongoClient = require('mongodb').MongoClient
-  , assert = require('assert');
+var mongo = require('mongodb'),
+  MongoClient = mongo.MongoClient,
+  assert = require('assert');
 
 // Connection URL
 var url = 'mongodb://localhost:27017/jizhang';
@@ -9,6 +10,8 @@ exports.connect = function(callback = (db, cb) => cb()) {
   MongoClient.connect(url, function(err, db) {
     assert.equal(null, err);
     console.log("Connected successfully to server");
-    callback.apply(null, [db, () => db.close()]);
+    callback.apply(null, [
+      db, () => db.close()
+    ]);
   });
 }

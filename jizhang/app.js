@@ -2,9 +2,11 @@ var express = require('express');
 var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser');
 const mmt = require('moment');
+const mongo = require('mongodb');
 const { connect } = require('./mongodb_connect');
-const { error, findBy, removeBy, getMD5 } = require('./server_utils');
+const { error, ok, findBy, removeBy, getMD5 } = require('./server_utils');
 const assert = require('assert');
+const objId = mongo.ObjectId;
 var app = express();
 const { stringify: json } = JSON;
 
@@ -15,15 +17,19 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 
 app.use((req, res, next) => {  // 根据 token 刷新用户登录时间
-    let token = req.cookies.token;
+    let { token, uid } = req.cookies;
     let logedUser = loged[findBy]('token', token);
     if (logedUser) {  // 用户登录
       if ((new Date(logedUser.recentReqTime + expireTime)) < (new Date())) {  // 用户登录已过期
         loged[removeBy]('token', logedUser.token);
         res.send(error('登录过期，请重新登录!'));
       } else {
+        res.cookie('uid', uid, { expires: new Date(Date.now() + expireTime)});
+        res.cookie('token', token, { expires: new Date(Date.now() + expireTime)});
         logedUser.recentReqTime = Date.now();
       }
+    } else {
+      // res.send(error('您未登陆，请登陆!'));
     }
     next();
 });
@@ -83,35 +89,69 @@ app.post('/signUp', (req, res) => {
       });
     });
   } else {
-    res.send(json(error('用户名或密码缺失，请完整填写!')));
+    res.send(error('用户名或密码缺失，请完整填写!'));
   }
 });
 
+// 保存提交
 app.post('/submitEdit', function(req, res) {
-  let { records = [], record_id } = req.body;
+  let { records = [], record_id, title } = req.body;
   let { uid } = req.cookies;
-  let date = Date.now();
-  let sum = records.reduce((a, b) => {
-    bMoney = b.type == 'in' ? Number(b.money) : - Number(b.money);
-    return a + bMoney;
-  }, 0);
+  let create_time = Date.now();
+  // let sum = records.reduce((a, b) => {
+  //   let bMoney = b.type == 'in' ? Number(b.money) : - Number(b.money);
+  //   return a + (bMoney ? bMoney : 0);
+  // }, 0);
+  let sum = 0, incomes = 0, outcomes = 0;
+  records.forEach(el => {
+    let money = el.type == 'in' ? Number(el.money) : - Number(el.money);
+    money = money ? money : 0;
+    el.type == 'in' ? incomes += money : outcomes += money});
+  sum = incomes + outcomes;
   connect((db, cb) => {
     let collection_records = db.collection('records');
-    let doc = { uid, date, sum , records };
-    collection_records.updateOne({ _id: record_id }, doc, { upsert: 1, w: 1 }, (err, r = {}) => {
-      if (r.ok || r.nModified) {
-        res.send(json({ state: 1, msg: '保存成功!' }));
+    let doc = { uid, create_time, sum, incomes, outcomes, records, title };
+    record_id = record_id == 0 ? 0 : record_id;
+    let pattern = record_id ? ({ _id: record_id }) : ({ create_time });
+    collection_records.updateOne(pattern, doc, { upsert: true, w: 1 }, (err, r = {}) => {
+      if (r.result.ok || r.result.nModified) {
+        res.send(ok({ state: 1, msg: '保存成功!' }));
       }
       cb();
     });
   });
 });
+
+// 获取数据
+app.get('/getAllRecords', (req, res) => {
+  let { date_begin, date_end } = req.body;
+  let { uid } = req.cookies;
+  connect((db, cb) => {
+    let collection_records = db.collection('records');
+    let cursor = collection_records.find({ uid }).project({uid: 0, records: 0}); // 返回数据排除 uid 字段
+    cursor.toArray((err, docs) => {
+      cb();
+      res.send(ok(docs));
+    });
+  });
+});
+
+// 根据记录 id 进行查询
+app.get('/getRecordById', (req, res) => {
+  let { _id } = req.query;
+  connect((db, cb) => {
+    let collection_records = db.collection('records');
+    _id = objId(_id);
+    collection_records.findOne({ _id }, {fields: {records: 1, incomes:1, outcomes: 1, sum: 1}}, (err, doc) => {
+      cb();
+      let data = Object.assign({ state: 1}, doc);
+      res.send(ok(data));
+    });
+  });
+})
+
 var server = app.listen(8801, function() {
   var host = server.address().address;
   var port = server.address().port;
   console.log('Example app listening at http://%s:%s', host, port);
 });
-
-function queryUser(uid) {
-
-}
