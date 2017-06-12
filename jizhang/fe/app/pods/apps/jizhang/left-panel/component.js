@@ -3,15 +3,11 @@ import { task } from 'ember-concurrency';
 import { getJSON, formatDate } from 'jizhang/utils/util';
 
 export default Ember.Component.extend({
-  histories: [
-    {date: new Date},
-    {date: new Date},
-    {date: new Date}
-  ],
+  histories: '',
   getAllRecords: task(function *(){
     let r = yield getJSON('/getAllRecords');
     if (r.state) {
-      r.data.forEach(el => el.createTime = formatDate(el.date));
+      r.data.forEach(el => el.createTime = formatDate(el.create_time));
       this.set('histories', r.data);
     }
   }),
