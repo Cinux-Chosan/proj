@@ -30,9 +30,9 @@ app.use((req, res, next) => {  // 根据 token 刷新用户登录时间
       }
       next();
     } else {
-      if (req.url == '/login') {
+      if (req.url == '/login' || req.url == '/signUp') {
         next();
-      } else {    
+      } else {
         res.send(error('您未登陆，请登陆!'));
       }
     }
