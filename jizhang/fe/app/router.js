@@ -13,6 +13,9 @@ Router.map(function() {
       this.route('edit', { path: 'edit/:edit_id'});
       this.route('detail', { path: 'detail/:detail_id'});
     });
+    this.route('map', function() {
+      this.route('api');
+    });
   });
 });
 
