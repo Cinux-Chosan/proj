@@ -1,0 +1,122 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node', '/bin/npm', 'install', '-g', 'cordova' ]
+2 info using npm@3.10.10
+3 info using node@v6.11.0
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readGlobalPackageData
+7 silly fetchPackageMetaData cordova
+8 silly fetchNamedPackageData cordova
+9 silly mapToRegistry name cordova
+10 silly mapToRegistry using default registry
+11 silly mapToRegistry registry http://npm.zbjwork.com/
+12 silly mapToRegistry data Result {
+12 silly mapToRegistry   raw: 'cordova',
+12 silly mapToRegistry   scope: null,
+12 silly mapToRegistry   escapedName: 'cordova',
+12 silly mapToRegistry   name: 'cordova',
+12 silly mapToRegistry   rawSpec: '',
+12 silly mapToRegistry   spec: 'latest',
+12 silly mapToRegistry   type: 'tag' }
+13 silly mapToRegistry uri http://npm.zbjwork.com/cordova
+14 verbose request uri http://npm.zbjwork.com/cordova
+15 verbose request no auth needed
+16 info attempt registry request try #1 at 14:10:14
+17 verbose request id d9c6519de0723fca
+18 http request GET http://npm.zbjwork.com/cordova
+19 http 404 http://npm.zbjwork.com/cordova
+20 verbose bad json <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+20 verbose bad json <html>
+20 verbose bad json <head><title>404 Not Found</title></head>
+20 verbose bad json <body bgcolor="white">
+20 verbose bad json <h1>404 Not Found</h1>
+20 verbose bad json <p>The requested URL was not found on this server.</body>
+20 verbose bad json </html>
+21 error registry error parsing json
+22 verbose headers { date: 'Thu, 22 Jun 2017 06:10:14 GMT',
+22 verbose headers   'content-type': 'text/html; charset=utf-8',
+22 verbose headers   'transfer-encoding': 'chunked',
+22 verbose headers   connection: 'keep-alive',
+22 verbose headers   vary: 'Accept-Encoding',
+22 verbose headers   'content-encoding': 'gzip' }
+23 silly get cb [ 404,
+23 silly get   { date: 'Thu, 22 Jun 2017 06:10:14 GMT',
+23 silly get     'content-type': 'text/html; charset=utf-8',
+23 silly get     'transfer-encoding': 'chunked',
+23 silly get     connection: 'keep-alive',
+23 silly get     vary: 'Accept-Encoding',
+23 silly get     'content-encoding': 'gzip' } ]
+24 silly fetchPackageMetaData SyntaxError: Unexpected token < in JSON at position 0
+24 silly fetchPackageMetaData <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+24 silly fetchPackageMetaData <html>
+24 silly fetchPackageMetaData <head><title>404 Not Found</title></head>
+24 silly fetchPackageMetaData <body bgcolor="white">
+24 silly fetchPackageMetaData <h1>404 Not Found</h1>
+24 silly fetchPackageMetaData <p>The requested URL was not found on this server.</body>
+24 silly fetchPackageMetaData </html>
+24 silly fetchPackageMetaData
+24 silly fetchPackageMetaData     at Object.parse (native)
+24 silly fetchPackageMetaData     at CachingRegistryClient.<anonymous> (/usr/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:237:23)
+24 silly fetchPackageMetaData     at /usr/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:216:7
+24 silly fetchPackageMetaData     at Gunzip.onEnd (zlib.js:227:5)
+24 silly fetchPackageMetaData     at emitNone (events.js:91:20)
+24 silly fetchPackageMetaData     at Gunzip.emit (events.js:185:7)
+24 silly fetchPackageMetaData     at endReadableNT (_stream_readable.js:974:12)
+24 silly fetchPackageMetaData     at _combinedTickCallback (internal/process/next_tick.js:80:11)
+24 silly fetchPackageMetaData     at process._tickCallback (internal/process/next_tick.js:104:9)
+24 silly fetchPackageMetaData  error for cordova SyntaxError: Unexpected token < in JSON at position 0
+24 silly fetchPackageMetaData <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+24 silly fetchPackageMetaData <html>
+24 silly fetchPackageMetaData <head><title>404 Not Found</title></head>
+24 silly fetchPackageMetaData <body bgcolor="white">
+24 silly fetchPackageMetaData <h1>404 Not Found</h1>
+24 silly fetchPackageMetaData <p>The requested URL was not found on this server.</body>
+24 silly fetchPackageMetaData </html>
+24 silly fetchPackageMetaData
+24 silly fetchPackageMetaData     at Object.parse (native)
+24 silly fetchPackageMetaData     at CachingRegistryClient.<anonymous> (/usr/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:237:23)
+24 silly fetchPackageMetaData     at /usr/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:216:7
+24 silly fetchPackageMetaData     at Gunzip.onEnd (zlib.js:227:5)
+24 silly fetchPackageMetaData     at emitNone (events.js:91:20)
+24 silly fetchPackageMetaData     at Gunzip.emit (events.js:185:7)
+24 silly fetchPackageMetaData     at endReadableNT (_stream_readable.js:974:12)
+24 silly fetchPackageMetaData     at _combinedTickCallback (internal/process/next_tick.js:80:11)
+24 silly fetchPackageMetaData     at process._tickCallback (internal/process/next_tick.js:104:9)
+25 silly rollbackFailedOptional Starting
+26 silly rollbackFailedOptional Finishing
+27 silly runTopLevelLifecycles Finishing
+28 silly install printInstalled
+29 verbose stack SyntaxError: Unexpected token < in JSON at position 0
+29 verbose stack <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+29 verbose stack <html>
+29 verbose stack <head><title>404 Not Found</title></head>
+29 verbose stack <body bgcolor="white">
+29 verbose stack <h1>404 Not Found</h1>
+29 verbose stack <p>The requested URL was not found on this server.</body>
+29 verbose stack </html>
+29 verbose stack
+29 verbose stack     at Object.parse (native)
+29 verbose stack     at CachingRegistryClient.<anonymous> (/usr/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:237:23)
+29 verbose stack     at /usr/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:216:7
+29 verbose stack     at Gunzip.onEnd (zlib.js:227:5)
+29 verbose stack     at emitNone (events.js:91:20)
+29 verbose stack     at Gunzip.emit (events.js:185:7)
+29 verbose stack     at endReadableNT (_stream_readable.js:974:12)
+29 verbose stack     at _combinedTickCallback (internal/process/next_tick.js:80:11)
+29 verbose stack     at process._tickCallback (internal/process/next_tick.js:104:9)
+30 verbose cwd /home/chosan/桌面/all/myproj
+31 error Linux 3.10.0-514.21.2.el7.x86_64
+32 error argv "/usr/bin/node" "/bin/npm" "install" "-g" "cordova"
+33 error node v6.11.0
+34 error npm  v3.10.10
+35 error Unexpected token < in JSON at position 0
+35 error <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+35 error <html>
+35 error <head><title>404 Not Found</title></head>
+35 error <body bgcolor="white">
+35 error <h1>404 Not Found</h1>
+35 error <p>The requested URL was not found on this server.</body>
+35 error </html>
+36 error If you need help, you may report this error at:
+36 error     <https://github.com/npm/npm/issues>
+37 verbose exit [ 1, true ]
